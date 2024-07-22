@@ -1,0 +1,500 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="svgbody" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+     <script>
+        // Define your constants here
+        const DEBUG = false; // Set this to true to turn on debug messages
+        const SLIDE_INTERVAL = 10000; // Time interval between slides in milliseconds
+        const SLIDE_COUNT = 1; // Set the total number of slides
+        const BUTTON_RADIO_COLOR = "#5ddb02"; // Set the button and active radio color
+        const BUTTON_HOVER_COLOR = "#75fd13"; // Set the button link hover color
+
+        const VIDEO_SRC1 = "https://leos.gr/videos/Desktopv1.1-H264.1024kbps.mp4"; // Video source URL
+        const VIDEO_SRC1_MOBILE = "https://leos.gr/videos/Mobilev1.1-H264.857kbps.mp4"; // Video source URL
+        const SLIDE_1_TITLE = "30 ΧΡΟΝΙΑ ΜΑΖΙ";
+        const SLIDE_1_SUBTITLE = "Αθλητικός εξοπλισμός";
+        const SLIDE_1A_LINK = "https://leos.gr/gia-to-spiti";
+        const SLIDE_1A_LINK_TEXT = "ΓΙΑ ΤΟ ΣΠΙΤΙ";
+        const SLIDE_1B_LINK = "https://leos.gr/gia-ton-epaggelmatia";
+        const SLIDE_1B_LINK_TEXT = "ΓΙΑ ΕΠΑΓΓΕΛΜΑΤΙΕΣ";
+
+        const VIDEO_SRC2 = "";
+        const VIDEO_SRC2_MOBILE = "";
+        const SLIDE_2_TITLE = "ASDF";
+        const SLIDE_2_SUBTITLE = "asdf asdf";
+        const SLIDE_2A_LINK = "https://www.google.com";
+        const SLIDE_2A_LINK_TEXT = "";
+        const SLIDE_2B_LINK = "";
+        const SLIDE_2B_LINK_TEXT = "";
+
+        const VIDEO_SRC3 = "";
+        const VIDEO_SRC3_MOBILE = "";
+        const SLIDE_3_TITLE = "";
+        const SLIDE_3_SUBTITLE = "";
+        const SLIDE_3A_LINK = "";
+        const SLIDE_3A_LINK_TEXT = "";
+        const SLIDE_3B_LINK = "";
+        const SLIDE_3B_LINK_TEXT = "";
+
+        const VIDEO_SRC4 = "";
+        const VIDEO_SRC4_MOBILE = "";
+        const SLIDE_4_TITLE = "";
+        const SLIDE_4_SUBTITLE = "";
+        const SLIDE_4A_LINK = "";
+        const SLIDE_4A_LINK_TEXT = "";
+        const SLIDE_4B_LINK = "";
+        const SLIDE_4B_LINK_TEXT = "";
+
+        const VIDEO_SRC5 = "";
+        const VIDEO_SRC5_MOBILE = "";
+        const SLIDE_5_TITLE = "";
+        const SLIDE_5_SUBTITLE = "";
+        const SLIDE_5A_LINK = "";
+        const SLIDE_5A_LINK_TEXT = "";
+        const SLIDE_5B_LINK = "";
+        const SLIDE_5B_LINK_TEXT = "";
+
+    </script>
+
+    <style type="text/css">
+#svgbody {width:100vw;height:734px;overflow:hidden;}
+@media only screen and (max-width: 768px) {#svgbody {max-height:70vh;}}
+body {overflow:hidden;margin:0;font-family: Roboto,sans-serif}
+
+/* Title section for each slide*/
+.written{position:absolute; left:0; margin:15px; display:flex;flex-direction:column; background:#00000050; padding:15px; border-radius:30px; max-width:min(500px, 80vw);}
+.slide-title {font-weight: 600;font-size: 2rem;letter-spacing: 0.05em;color: white;margin: 0 0 0.5rem 0;}
+.slide-subtitle {font-weight:100;color:white;font-size: 1rem;}
+.slide-button {width: 8rem;height: 1.75rem;background-color: var(--button-radio-color);border-radius: 9999px;display: flex;margin:1rem auto;}
+.slide-button:hover {background-color: var(--button-hover-color);}
+.button-link-a, .button-link-b {text-decoration:none;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;font-family: 'Roboto Flex', sans-serif;font-size: 10px;color:black;}
+
+@media (min-width: 640px) {
+    .slide-button {width: 12rem;height: 2.75rem;}
+    .button-link-a, .button-link-b {font-size: 0.75rem;}
+    .slide-title {font-size: 3rem;}
+    .slide-subtitle {font-size: 1.25rem;}
+}
+@media (max-width: 768px) {
+    .written {margin:0; border-radius:0;width:100%;max-width:100%;padding:50px 0 0 0;justify-content:end;bottom:0;background: linear-gradient(#00000000, #00000050 60px);
+}
+}
+@media (min-width: 1024px) {
+    .slide-button {width: 16rem;height: 3.5rem;}
+    .button-link-a, .button-link-b {font-size: 0.875rem;}
+    .slide-title {font-size: 54px;line-height: 58px;}
+}
+
+.slideshow {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory; /* Enforces snapping on the x-axis */
+
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on touch devices */
+  width: 100vw;
+  height: 734px;
+  scrollbar-width: none; /* Hides the scrollbar */
+}
+@media only screen and (max-width: 768px) {.slideshow {max-height:70vh;}}
+
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  font-size: 24px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+.embedded-video {
+  min-width: 100vw;
+  max-width:100vw;
+  overflow: hidden;
+  height: 100%;
+  object-fit: cover;
+  left:50vw;
+  transform: translateX(-50%);
+  position: absolute;
+}
+
+/* Background animation */ 
+#bg-logo {position:absolute;z-index:-1;width:80vw;max-width:1000px;top:50%;left:50vw;transform:translate(-50%, -50%);}
+#radialanimation {width:100vw; height:100vw;z-index:-2;
+    background:radial-gradient(#6ddb2c, #00000000 70%); 
+    position:absolute;
+    left:50vw;top:50%;transform: translate(-50%, -50%);
+    animation: 2s infinite alternate pulsepulse;}
+#bg { width:1920px; height:734px; background-color:#000;position:absolute;z-index:-3; }
+@keyframes pulsepulse {
+    from {width:600px;height:500px;opacity:50%;}
+    to {width:900px;height:750px;opacity:100%;}
+}
+
+.radio-toolbar input[type="radio"] {display: none;}
+.radio-toolbar input[type="radio"]:checked + label {background-color: var(--button-radio-color);}
+.radio-toolbar label {display: inline-block;background-color: #ffffffaa;width:30px; height:30px;font-size: 0;border-radius: 10px;cursor: pointer;}
+.radio-toolbar {text-align: center;position: absolute;bottom:30px;left:50vw;transform: translateX(-50%);display: flex;gap: 30px;}
+
+#debugger {font-family: monospace;color:#0D0;}
+p#debugText {display:flex;flex-direction:column;}
+p#debugText span {}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://leos.gr/fonts/Roboto-Bold.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://leos.gr/fonts/Roboto-Regular.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    src: url(https://leos.gr/fonts/Roboto-Light.woff2) format("woff2")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto Flex;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://leos.gr/fonts/RobotoFlex-Regular.woff2) format("woff2")
+}
+    </style>
+
+
+
+    <!-- Embed HTML content within SVG -->
+  <foreignObject width="1920" height="100%">
+        <body xmlns="http://www.w3.org/1999/xhtml" class="svg-body">
+            <img id="bg-logo" src='data:image/png;base64,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'/>
+            <div id="radialanimation"></div>
+            <div id="bg"></div>
+        </body>
+    </foreignObject>
+
+    <foreignObject width="1920" height="100%">
+        <body xmlns="http://www.w3.org/1999/xhtml" class="svg-body">
+                <div class="slideshow">
+                    <div class="slide"  id="slide1">
+                        <video id="video1" preload="auto" class="embedded-video" autoplay="1" loop="1" muted="1" playsinline="1">Your browser does not support the video tag.</video>
+                        <div class="written">
+                            <div class="slide-title"></div>
+                            <div class="slide-subtitle"></div>
+                            <div class="slide-button">
+                                <a class="button-link-a" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                            <div class="slide-button" style="margin:0 auto 15px auto;">
+                                <a class="button-link-b" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide" id="slide2">
+                        <video id="video2" preload="none" class="embedded-video" autoplay="1" loop="1" muted="1" playsinline="1">Your browser does not support the video tag.</video>
+                        <div class="written">
+                            <div class="slide-title"></div>
+                            <div class="slide-subtitle"></div>
+                            <div class="slide-button">
+                                <a class="button-link-a" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                            <div class="slide-button" style="margin:0 auto 15px auto;">
+                                <a class="button-link-b" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide" id="slide3">
+                        <video id="video3" preload="none" class="embedded-video" autoplay="1" loop="1" muted="1" playsinline="1">Your browser does not support the video tag.</video>
+                        <div class="written">
+                            <div class="slide-title"></div>
+                            <div class="slide-subtitle"></div>
+                            <div class="slide-button">
+                                <a class="button-link-a" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                            <div class="slide-button" style="margin:0 auto 15px auto;">
+                                <a class="button-link-b" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide" id="slide4">
+                        <video id="video4" preload="none" class="embedded-video" autoplay="1" loop="1" muted="1" playsinline="1">Your browser does not support the video tag.</video>
+                        <div class="written">
+                            <div class="slide-title"></div>
+                            <div class="slide-subtitle"></div>
+                            <div class="slide-button">
+                                <a class="button-link-a" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                            <div class="slide-button" style="margin:0 auto 15px auto;">
+                                <a class="button-link-b" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide" id="slide5">
+                        <video id="video5" preload="none" class="embedded-video" autoplay="1" loop="1" muted="1" playsinline="1">Your browser does not support the video tag.</video>
+                        <div class="written">
+                            <div class="slide-title"></div>
+                            <div class="slide-subtitle"></div>
+                            <div class="slide-button">
+                                <a class="button-link-a" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                            <div class="slide-button" style="margin:0 auto 15px auto;">
+                                <a class="button-link-b" target="_parent" rel="noopener" href="https://youtu.be/dQw4w9WgXcQ"><span>ΠΕΡΙΣΣΟΤΕΡΑ</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            <div class="radio-toolbar">
+                <input type="radio" id="radio1" name="slider" checked="checked"></input>
+                <label for="radio1">Slide 1</label>
+
+                <input type="radio" id="radio2" name="slider"></input>
+                <label for="radio2">Slide 2</label>
+
+                <input type="radio" id="radio3" name="slider"> </input>
+                <label for="radio3">Slide 3</label>
+
+                <input type="radio" id="radio4" name="slider"> </input>
+                <label for="radio4">Slide 4</label>
+                
+                <input type="radio" id="radio5" name="slider"> </input>
+                <label for="radio5">Slide 5</label>
+            </div>
+            <div id="debugger" style="position:absolute;padding:20px;top:50%;left:50vw;transform:translate(-50%,-50%);background-color:black;border:1px solid yellow;border-radius:20px;max-width:300px;display:flex;flex-direction:column;flex-wrap:wrap;display:none;">
+                <p style="color:white;font-weight:bold;">My Debug Console:</p>
+                <p id="debugText">
+                <span id="slide-width"></span>
+                <span id="snapToClosestSlide"></span>
+                <span id="changeSlide"></span>
+                </p>
+            </div>
+        </body>
+    </foreignObject>
+
+<script type="text/ecmascript"><![CDATA[
+    // Add video links from the Constants at the top
+    document.addEventListener('DOMContentLoaded', function() {
+        const rootStyle = document.documentElement.style;
+        rootStyle.setProperty('--button-radio-color', BUTTON_RADIO_COLOR);
+        rootStyle.setProperty('--button-hover-color', BUTTON_HOVER_COLOR);
+        updateVideoSources();
+        window.addEventListener("resize", updateVideoSources);
+        window.addEventListener("orientationchange", updateVideoSources);
+
+        function updateVideoSources() {
+            var screenWidth = window.innerWidth;
+            const videoElement1 = document.getElementById('video1');
+            const videoElement2 = document.getElementById('video2');
+            const videoElement3 = document.getElementById('video3');
+            const videoElement4 = document.getElementById('video4');
+            const videoElement5 = document.getElementById('video5');
+            // Set the source for video 1
+            if (screenWidth >= 769) {
+                videoElement1.src = VIDEO_SRC1;
+            } else {
+                videoElement1.src = VIDEO_SRC1_MOBILE || VIDEO_SRC1;
+            }
+
+            // Set the source for video 2
+            if (screenWidth >= 769) {
+                videoElement2.src = VIDEO_SRC2;
+            } else {
+                videoElement2.src = VIDEO_SRC2_MOBILE || VIDEO_SRC2;
+            }
+
+            // Repeat for other videos as necessary
+            if (screenWidth >= 769) {
+                videoElement3.src = VIDEO_SRC3;
+            } else {
+                videoElement3.src = VIDEO_SRC3_MOBILE || VIDEO_SRC3;
+            }
+
+            if (screenWidth >= 769) {
+                videoElement4.src = VIDEO_SRC4;
+            } else {
+                videoElement4.src = VIDEO_SRC4_MOBILE || VIDEO_SRC4;
+            }
+
+            if (screenWidth >= 769) {
+                videoElement5.src = VIDEO_SRC5;
+            } else {
+                videoElement5.src = VIDEO_SRC5_MOBILE || VIDEO_SRC5;
+            }
+
+            videoElement1.setAttribute("type", "video/mp4");
+            videoElement2.setAttribute("type", "video/mp4");
+            videoElement3.setAttribute("type", "video/mp4");
+            videoElement4.setAttribute("type", "video/mp4");
+            videoElement5.setAttribute("type", "video/mp4");
+            }
+        });
+
+    const slidesData = [
+        { title: SLIDE_1_TITLE, subtitle: SLIDE_1_SUBTITLE, linkA: SLIDE_1A_LINK, linkTextA: SLIDE_1A_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ", linkB: SLIDE_1B_LINK, linkTextB: SLIDE_1B_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ" },
+        { title: SLIDE_2_TITLE, subtitle: SLIDE_2_SUBTITLE, linkA: SLIDE_2A_LINK, linkTextA: SLIDE_2A_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ", linkB: SLIDE_2B_LINK, linkTextB: SLIDE_2B_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ" },
+        { title: SLIDE_3_TITLE, subtitle: SLIDE_3_SUBTITLE, linkA: SLIDE_3A_LINK, linkTextA: SLIDE_3A_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ", linkB: SLIDE_3B_LINK, linkTextB: SLIDE_3B_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ" },
+        { title: SLIDE_4_TITLE, subtitle: SLIDE_4_SUBTITLE, linkA: SLIDE_4A_LINK, linkTextA: SLIDE_4A_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ", linkB: SLIDE_4B_LINK, linkTextB: SLIDE_4B_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ" },
+        { title: SLIDE_5_TITLE, subtitle: SLIDE_5_SUBTITLE, linkA: SLIDE_5A_LINK, linkTextA: SLIDE_5A_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ", linkB: SLIDE_5B_LINK, linkTextB: SLIDE_5B_LINK_TEXT || "ΠΕΡΙΣΣΟΤΕΡΑ" },
+    ];
+
+    slidesData.forEach((slide, index) => {
+        const slideElement = document.querySelector(`#slide${index + 1}`);
+        if (!slideElement) return;
+
+        const titleElement = slideElement.querySelector('.slide-title');
+        const subtitleElement = slideElement.querySelector('.slide-subtitle');
+        const linkElementA = slideElement.querySelector('.button-link-a');
+        const linkElementB = slideElement.querySelector('.button-link-b');
+        const writtenElement = slideElement.querySelector('.written');
+
+        // Set title and subtitle
+        if (slide.title) {
+            titleElement.textContent = slide.title;
+        } else {
+            titleElement.style.display = 'none';
+        }
+
+        if (slide.subtitle) {
+            subtitleElement.textContent = slide.subtitle;
+        } else {
+            subtitleElement.style.display = 'none';
+        }
+
+        // Set link and text
+        if (slide.linkA) {
+            linkElementA.href = slide.linkA;
+            linkElementA.textContent = slide.linkTextA;
+        } else {
+            linkElementA.parentElement.style.display = 'none'; // Check if there's a typo in 'linkElementA'
+        }
+        // Update second button
+        if (slide.linkB) {
+            linkElementB.href = slide.linkB;
+            linkElementB.textContent = slide.linkTextB;
+        } else {
+            linkElementB.parentElement.style.display = 'none';
+        }
+
+        // Conditional styling based on content
+        if (!slide.title && !slide.subtitle && !slide.link) {
+            writtenElement.style.display = 'none'; // Hide if all are empty
+        } else if (!slide.title && !slide.subtitle && slide.link) {
+            writtenElement.style.backgroundColor = '#00000000'; // Transparent background if no title and subtitle but link exists
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var video = document.getElementById('video1');
+        const slideshow = document.querySelector('.slideshow');
+        const radios = document.querySelectorAll('input[type="radio"][name="slider"]');
+        let currentSlide = 0;
+        const numSlides = radios.length;
+        let slideWidth = slideshow.offsetWidth;  // Initially set the slide width
+        
+        // Function to update debug text
+        if (DEBUG) {document.getElementById("debugger").style.display = "block";}
+        function updateDebugText(id, message) {var element = document.getElementById(id);element.innerText = message;};
+
+        // Adjust visibility of slides and radio buttons
+        for (let i = 1; i <= 5; i++) {
+            const slide = document.getElementById(`slide${i}`);
+            const radio = document.getElementById(`radio${i}`);
+            const label = document.querySelector(`label[for='radio${i}']`);
+
+            if (i <= SLIDE_COUNT) {
+                slide.style.display = 'flex';  // Assuming 'flex' is your desired display style
+                label.style.display = 'inline-block';
+            } else {
+                slide.style.display = 'none';
+                label.style.display = 'none';
+            }
+        }
+        if (SLIDE_COUNT <= 1) {document.querySelector('.radio-toolbar').style.display = 'none';};
+        
+
+        setInterval(function() {
+                const newWidth = slideshow.offsetWidth;
+                if (newWidth !== slideWidth) {
+                    slideWidth = newWidth;
+                    updateDebugText('slide-width',`Slide width updated to: ${slideWidth}px`);  // Debug output to monitor changes
+                }
+            }, 500);
+
+        function snapToClosestSlide() {
+            const currentScrollPosition = slideshow.scrollLeft;
+            const closestIndex = Math.round(currentScrollPosition / slideWidth);
+            changeSlide(closestIndex); // Assuming this function already scrolls appropriately
+            updateDebugText('snapToClosestSlide',`Snapping to slide ${closestIndex}, scroll position: ${currentScrollPosition}`);  // Debugging output
+        };
+
+        // Function to change slide
+        const changeSlide = (index) => {
+            updateDebugText('changeSlide',`Changing to slide ${index}`);  // Debugging output
+            slideshow.scrollLeft = index * slideWidth; // Scroll to the slide
+            radios[index].checked = true;
+            currentSlide = index;
+        };
+
+        // Event listener for radio button change
+        radios.forEach((radio, index) => {
+            radio.addEventListener('change', () => {
+                changeSlide(index);
+                resetInterval();
+            });
+        });
+
+        // Auto change slides
+        const autoChange = () => {
+            let nextSlide = (currentSlide + 1) % SLIDE_COUNT;
+            changeSlide(nextSlide);
+        };
+        
+        let slideInterval = setInterval(autoChange, SLIDE_INTERVAL);
+
+        // Reset the timer
+        const resetInterval = () => {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(autoChange, SLIDE_INTERVAL);
+        };
+
+        // Detect user interaction via scroll
+        let isUserScrolling = false;
+        slideshow.addEventListener('scroll', () => {
+            if (!isUserScrolling) {
+                const newIndex = Math.round(slideshow.scrollLeft / slideWidth);
+                if (newIndex !== currentSlide) {
+                    currentSlide = newIndex;
+                    radios[newIndex].checked = true;
+                    resetInterval();
+                }
+            }
+        });
+
+        // Detect when user starts interacting
+        slideshow.addEventListener('mousedown', () => isUserScrolling = true);
+        slideshow.addEventListener('mouseup', () => isUserScrolling = false);
+        slideshow.addEventListener('touchend', () => {isUserScrolling = false;snapToClosestSlide();});
+
+        // Play video
+        video.play();
+    });
+]]>
+</script>
+</svg>
