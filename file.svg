@@ -11,10 +11,12 @@
         const BUTTON_RADIO_COLOR = "#5ddb02"; // Set the button and active radio color
         const BUTTON_HOVER_COLOR = "#75fd13"; // Set the button link hover color
 
-        const VIDEO_SRC1 = "https://leos.gr/videos/Desktopv1.1-H264.1024kbps.mp4"; // Video source URL
-        const VIDEO_SRC1_WEBM = "https://leos.gr/videos/Desktopv1.1-768kbps-vp9.mp4";
-        const VIDEO_SRC1_MOBILE = "https://leos.gr/videos/Mobilev1.1-H264.857kbps.mp4"; // Video source URL
-        const VIDEO_SRC1_WEBM_MOBILE = "https://leos.gr/videos/Mobilev1.1-434kbps-vp9.mp4";
+        const VIDEO_1_SRC1 = "https://leos.gr/videos/Desktopv1.1-512kbps-av1-1.mp4";
+        const VIDEO_1_SRC2 = "https://leos.gr/videos/Desktopv1.1-768kbps-vp9.mp4";
+        const VIDEO_1_SRC3 = "https://leos.gr/videos/Desktopv1.1-H264.1024kbps.mp4"; // Video source URL
+        const VIDEO_1_SRC1_MOBILE = "https://leos.gr/videos/Mobile1.1-512kbps-av1.mp4";
+        const VIDEO_1_SRC2_MOBILE = "https://leos.gr/videos/Mobilev1.1-434kbps-vp9.mp4";
+        const VIDEO_1_SRC3_MOBILE = "https://leos.gr/videos/Mobilev1.1-H264.857kbps.mp4"; // Video source URL
         const SLIDE_1_TITLE = "30 ΧΡΟΝΙΑ ΜΑΖΙ";
         const SLIDE_1_SUBTITLE = "Αθλητικός εξοπλισμός";
         const SLIDE_1A_LINK = "https://leos.gr/gia-to-spiti";
@@ -22,10 +24,12 @@
         const SLIDE_1B_LINK = "https://leos.gr/gia-ton-epaggelmatia";
         const SLIDE_1B_LINK_TEXT = "ΓΙΑ ΕΠΑΓΓΕΛΜΑΤΙΕΣ";
 
-        const VIDEO_SRC2 = "";
-        const VIDEO_SRC2_WEBM = "";
-        const VIDEO_SRC2_MOBILE = "";
-        const VIDEO_SRC2_WEBM_MOBILE = "";
+        const VIDEO_2_SRC1 = "";
+        const VIDEO_2_SRC2 = "";
+        const VIDEO_2_SRC3 = "";
+        const VIDEO_2_SRC1_MOBILE = "";
+        const VIDEO_2_SRC2_MOBILE = "";
+        const VIDEO_2_SRC3_MOBILE = "";
         const SLIDE_2_TITLE = "ASDF";
         const SLIDE_2_SUBTITLE = "asdf asdf";
         const SLIDE_2A_LINK = "https://www.google.com";
@@ -33,10 +37,12 @@
         const SLIDE_2B_LINK = "";
         const SLIDE_2B_LINK_TEXT = "";
 
-        const VIDEO_SRC3 = "";
-        const VIDEO_SRC3_WEBM = "";
-        const VIDEO_SRC3_MOBILE = "";
-        const VIDEO_SRC3_WEBM_MOBILE = "";
+        const VIDEO_3_SRC1 = "";
+        const VIDEO_3_SRC2 = "";
+        const VIDEO_3_SRC3 = "";
+        const VIDEO_3_SRC1_MOBILE = "";
+        const VIDEO_3_SRC2_MOBILE = "";
+        const VIDEO_3_SRC3_MOBILE = "";
         const SLIDE_3_TITLE = "";
         const SLIDE_3_SUBTITLE = "";
         const SLIDE_3A_LINK = "";
@@ -44,10 +50,12 @@
         const SLIDE_3B_LINK = "";
         const SLIDE_3B_LINK_TEXT = "";
 
-        const VIDEO_SRC4 = "";
-        const VIDEO_SRC4_WEBM = "";
-        const VIDEO_SRC4_MOBILE = "";
-        const VIDEO_SRC4_WEBM_MOBILE = "";
+        const VIDEO_4_SRC1 = "";
+        const VIDEO_4_SRC2 = "";
+        const VIDEO_4_SRC3 = "";
+        const VIDEO_4_SRC1_MOBILE = "";
+        const VIDEO_4_SRC2_MOBILE = "";
+        const VIDEO_4_SRC3_MOBILE = "";
         const SLIDE_4_TITLE = "";
         const SLIDE_4_SUBTITLE = "";
         const SLIDE_4A_LINK = "";
@@ -55,10 +63,12 @@
         const SLIDE_4B_LINK = "";
         const SLIDE_4B_LINK_TEXT = "";
 
-        const VIDEO_SRC5 = "";
-        const VIDEO_SRC5_WEBM = "";
-        const VIDEO_SRC5_MOBILE = "";
-        const VIDEO_SRC5_WEBM_MOBILE = "";
+        const VIDEO_5_SRC1 = "";
+        const VIDEO_5_SRC2 = "";
+        const VIDEO_5_SRC3 = "";
+        const VIDEO_5_SRC1_MOBILE = "";
+        const VIDEO_5_SRC2_MOBILE = "";
+        const VIDEO_5_SRC3_MOBILE = "";
         const SLIDE_5_TITLE = "";
         const SLIDE_5_SUBTITLE = "";
         const SLIDE_5A_LINK = "";
@@ -314,6 +324,11 @@
                 if (Desktop) {Desktop = false;updateVideoSources();}
             }
         }
+        
+        function getFileExtension(filename) {
+            let extension = filename.slice((filename.lastIndexOf(".") + 1));
+            return extension;
+        }
 
         function updateVideoSources() {
             var screenWidth = window.innerWidth;
@@ -326,53 +341,83 @@
             if (screenWidth >= 769) {
                 if (SLIDE_COUNT >= 1) {
                     videoElement1.innerHTML = '';
-                    videoElement1.innerHTML += `<source src="${VIDEO_SRC1_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC1}" type="video/mp4"/>`;
+                    videoElement1.innerHTML += `
+                    ${VIDEO_1_SRC1 ? `<source src="${VIDEO_1_SRC1}" type="video/${getFileExtension(VIDEO_1_SRC1)}"/>` : ''}
+                    ${VIDEO_1_SRC2 ? `<source src="${VIDEO_1_SRC2}" type="video/${getFileExtension(VIDEO_1_SRC2)}"/>` : ''}
+                    ${VIDEO_1_SRC3 ? `<source src="${VIDEO_1_SRC3}" type="video/${getFileExtension(VIDEO_1_SRC3)}"/>` : ''}`;
                     videoElement1.load();
                 }
                 if (SLIDE_COUNT >= 2) {
                     videoElement2.innerHTML = '';
-                    videoElement2.innerHTML += `<source src="${VIDEO_SRC2_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC2}" type="video/mp4"/>`;
+                    videoElement2.innerHTML += `
+                    ${VIDEO_2_SRC1 ? `<source src="${VIDEO_2_SRC1}" type="video/${getFileExtension(VIDEO_2_SRC1)}"/>` : ''}
+                    ${VIDEO_2_SRC2 ? `<source src="${VIDEO_2_SRC2}" type="video/${getFileExtension(VIDEO_2_SRC2)}"/>` : ''}
+                    ${VIDEO_2_SRC3 ? `<source src="${VIDEO_2_SRC3}" type="video/${getFileExtension(VIDEO_2_SRC3)}"/>` : ''}`;
                     videoElement2.load();
                 }
                 if (SLIDE_COUNT >= 3) {
                     videoElement3.innerHTML = '';
-                    videoElement3.innerHTML += `<source src="${VIDEO_SRC3_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC3}" type="video/mp4"/>`;
+                    videoElement3.innerHTML += `
+                    ${VIDEO_3_SRC1 ? `<source src="${VIDEO_3_SRC1}" type="video/${getFileExtension(VIDEO_3_SRC1)}"/>` : ''}
+                    ${VIDEO_3_SRC2 ? `<source src="${VIDEO_3_SRC2}" type="video/${getFileExtension(VIDEO_3_SRC2)}"/>` : ''}
+                    ${VIDEO_3_SRC3 ? `<source src="${VIDEO_3_SRC3}" type="video/${getFileExtension(VIDEO_3_SRC3)}"/>` : ''}`;
                     videoElement3.load();
                 }
                 if (SLIDE_COUNT >= 4) {
                     videoElement4.innerHTML = '';
-                    videoElement4.innerHTML += `<source src="${VIDEO_SRC4_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC4}" type="video/mp4"/>`;
+                    videoElement4.innerHTML += `
+                    ${VIDEO_4_SRC1 ? `<source src="${VIDEO_4_SRC1}" type="video/${getFileExtension(VIDEO_4_SRC1)}"/>` : ''}
+                    ${VIDEO_4_SRC2 ? `<source src="${VIDEO_4_SRC2}" type="video/${getFileExtension(VIDEO_4_SRC2)}"/>` : ''}
+                    ${VIDEO_4_SRC3 ? `<source src="${VIDEO_4_SRC3}" type="video/${getFileExtension(VIDEO_4_SRC3)}"/>` : ''}`;
                     videoElement4.load();
                 }
                 if (SLIDE_COUNT >= 5) {
                     videoElement5.innerHTML = '';
-                    videoElement5.innerHTML += `<source src="${VIDEO_SRC5_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC5}" type="video/mp4"/>`;
+                    videoElement5.innerHTML += `
+                    ${VIDEO_5_SRC1 ? `<source src="${VIDEO_5_SRC1}" type="video/${getFileExtension(VIDEO_5_SRC1)}"/>` : ''}
+                    ${VIDEO_5_SRC2 ? `<source src="${VIDEO_5_SRC2}" type="video/${getFileExtension(VIDEO_5_SRC2)}"/>` : ''}
+                    ${VIDEO_5_SRC3 ? `<source src="${VIDEO_5_SRC3}" type="video/${getFileExtension(VIDEO_5_SRC3)}"/>` : ''}`;
                     videoElement5.load();
                 }
             } else {
                 if (SLIDE_COUNT >= 1) {
                     videoElement1.innerHTML = '';
-                    videoElement1.innerHTML += `<source src="${VIDEO_SRC1_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC1_MOBILE}" type="video/mp4"/>`;
+                    videoElement1.innerHTML += `
+                    ${VIDEO_1_SRC1_MOBILE ? `<source src="${VIDEO_1_SRC1_MOBILE}" type="video/${getFileExtension(VIDEO_1_SRC1_MOBILE)}"/>` : ''}
+                    ${VIDEO_1_SRC2_MOBILE ? `<source src="${VIDEO_1_SRC2_MOBILE}" type="video/${getFileExtension(VIDEO_1_SRC2_MOBILE)}"/>` : ''}
+                    ${VIDEO_1_SRC3_MOBILE ? `<source src="${VIDEO_1_SRC3_MOBILE}" type="video/${getFileExtension(VIDEO_1_SRC3_MOBILE)}"/>` : ''}`;
                     videoElement1.load();
                 }
                 if (SLIDE_COUNT >= 2) {
                     videoElement2.innerHTML = '';
-                    videoElement2.innerHTML += `<source src="${VIDEO_SRC2_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC2_MOBILE}" type="video/mp4"/>`;
+                    videoElement2.innerHTML += `
+                    ${VIDEO_2_SRC1_MOBILE ? `<source src="${VIDEO_2_SRC1_MOBILE}" type="video/${getFileExtension(VIDEO_2_SRC1_MOBILE)}"/>` : ''}
+                    ${VIDEO_2_SRC2_MOBILE ? `<source src="${VIDEO_2_SRC2_MOBILE}" type="video/${getFileExtension(VIDEO_2_SRC2_MOBILE)}"/>` : ''}
+                    ${VIDEO_2_SRC3_MOBILE ? `<source src="${VIDEO_2_SRC3_MOBILE}" type="video/${getFileExtension(VIDEO_2_SRC3_MOBILE)}"/>` : ''}`;
                     videoElement2.load();
                 }
                 if (SLIDE_COUNT >= 3) {
                     videoElement3.innerHTML = '';
-                    videoElement3.innerHTML += `<source src="${VIDEO_SRC3_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC3_MOBILE}" type="video/mp4"/>`;
+                    videoElement3.innerHTML += `
+                    ${VIDEO_3_SRC1_MOBILE ? `<source src="${VIDEO_3_SRC1_MOBILE}" type="video/${getFileExtension(VIDEO_3_SRC1_MOBILE)}"/>` : ''}
+                    ${VIDEO_3_SRC2_MOBILE ? `<source src="${VIDEO_3_SRC2_MOBILE}" type="video/${getFileExtension(VIDEO_3_SRC2_MOBILE)}"/>` : ''}
+                    ${VIDEO_3_SRC3_MOBILE ? `<source src="${VIDEO_3_SRC3_MOBILE}" type="video/${getFileExtension(VIDEO_3_SRC3_MOBILE)}"/>` : ''}`;
                     videoElement3.load();
                 }
                 if (SLIDE_COUNT >= 4) {
                     videoElement4.innerHTML = '';
-                    videoElement4.innerHTML += `<source src="${VIDEO_SRC4_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC4_MOBILE}" type="video/mp4"/>`;
+                    videoElement4.innerHTML += `
+                    ${VIDEO_4_SRC1_MOBILE ? `<source src="${VIDEO_4_SRC1_MOBILE}" type="video/${getFileExtension(VIDEO_4_SRC1_MOBILE)}"/>` : ''}
+                    ${VIDEO_4_SRC2_MOBILE ? `<source src="${VIDEO_4_SRC2_MOBILE}" type="video/${getFileExtension(VIDEO_4_SRC2_MOBILE)}"/>` : ''}
+                    ${VIDEO_4_SRC3_MOBILE ? `<source src="${VIDEO_4_SRC3_MOBILE}" type="video/${getFileExtension(VIDEO_4_SRC3_MOBILE)}"/>` : ''}`;
                     videoElement4.load();
                 }
                 if (SLIDE_COUNT >= 5) {
                     videoElement5.innerHTML = '';
-                    videoElement5.innerHTML += `<source src="${VIDEO_SRC5_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC5_MOBILE}" type="video/mp4"/>`;
+                    videoElement5.innerHTML += `
+                    ${VIDEO_5_SRC1_MOBILE ? `<source src="${VIDEO_5_SRC1_MOBILE}" type="video/${getFileExtension(VIDEO_5_SRC1_MOBILE)}"/>` : ''}
+                    ${VIDEO_5_SRC2_MOBILE ? `<source src="${VIDEO_5_SRC2_MOBILE}" type="video/${getFileExtension(VIDEO_5_SRC2_MOBILE)}"/>` : ''}
+                    ${VIDEO_5_SRC3_MOBILE ? `<source src="${VIDEO_5_SRC3_MOBILE}" type="video/${getFileExtension(VIDEO_5_SRC3_MOBILE)}"/>` : ''}`;
                     videoElement5.load();
                 }
             }
