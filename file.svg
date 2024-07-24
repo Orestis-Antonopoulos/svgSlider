@@ -322,11 +322,6 @@
             const videoElement3 = document.getElementById('video3');
             const videoElement4 = document.getElementById('video4');
             const videoElement5 = document.getElementById('video5');
-
-            videoElement2.innerHTML += `<source src="${VIDEO_SRC2_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC2}" type="video/mp4"/>`;
-            videoElement3.innerHTML += `<source src="${VIDEO_SRC3_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC3}" type="video/mp4"/>`;
-            videoElement4.innerHTML += `<source src="${VIDEO_SRC4_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC4}" type="video/mp4"/>`;
-            videoElement5.innerHTML += `<source src="${VIDEO_SRC5_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC5}" type="video/mp4"/>`;
             
             if (screenWidth >= 769) {
                 if (SLIDE_COUNT >= 1) {
