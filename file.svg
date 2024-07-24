@@ -5,7 +5,7 @@
      xmlns:xlink="http://www.w3.org/1999/xlink">
      <script>
         // Define your constants here
-        const DEBUG = true; // Set this to true to turn on debug messages
+        const DEBUG = false; // Set this to true to turn on debug messages
         const SLIDE_INTERVAL = 10000; // Time interval between slides in milliseconds
         const SLIDE_COUNT = 1; // Set the total number of slides
         const BUTTON_RADIO_COLOR = "#5ddb02"; // Set the button and active radio color
