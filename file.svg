@@ -5,14 +5,16 @@
      xmlns:xlink="http://www.w3.org/1999/xlink">
      <script>
         // Define your constants here
-        const DEBUG = false; // Set this to true to turn on debug messages
+        const DEBUG = true; // Set this to true to turn on debug messages
         const SLIDE_INTERVAL = 10000; // Time interval between slides in milliseconds
         const SLIDE_COUNT = 1; // Set the total number of slides
         const BUTTON_RADIO_COLOR = "#5ddb02"; // Set the button and active radio color
         const BUTTON_HOVER_COLOR = "#75fd13"; // Set the button link hover color
 
         const VIDEO_SRC1 = "https://leos.gr/videos/Desktopv1.1-H264.1024kbps.mp4"; // Video source URL
+        const VIDEO_SRC1_WEBM = "https://leos.gr/videos/Desktopv1.1-768kbps-vp9.mp4";
         const VIDEO_SRC1_MOBILE = "https://leos.gr/videos/Mobilev1.1-H264.857kbps.mp4"; // Video source URL
+        const VIDEO_SRC1_WEBM_MOBILE = "https://leos.gr/videos/Mobilev1.1-434kbps-vp9.mp4";
         const SLIDE_1_TITLE = "30 ΧΡΟΝΙΑ ΜΑΖΙ";
         const SLIDE_1_SUBTITLE = "Αθλητικός εξοπλισμός";
         const SLIDE_1A_LINK = "https://leos.gr/gia-to-spiti";
@@ -21,7 +23,9 @@
         const SLIDE_1B_LINK_TEXT = "ΓΙΑ ΕΠΑΓΓΕΛΜΑΤΙΕΣ";
 
         const VIDEO_SRC2 = "";
+        const VIDEO_SRC2_WEBM = "";
         const VIDEO_SRC2_MOBILE = "";
+        const VIDEO_SRC2_WEBM_MOBILE = "";
         const SLIDE_2_TITLE = "ASDF";
         const SLIDE_2_SUBTITLE = "asdf asdf";
         const SLIDE_2A_LINK = "https://www.google.com";
@@ -30,7 +34,9 @@
         const SLIDE_2B_LINK_TEXT = "";
 
         const VIDEO_SRC3 = "";
+        const VIDEO_SRC3_WEBM = "";
         const VIDEO_SRC3_MOBILE = "";
+        const VIDEO_SRC3_WEBM_MOBILE = "";
         const SLIDE_3_TITLE = "";
         const SLIDE_3_SUBTITLE = "";
         const SLIDE_3A_LINK = "";
@@ -39,7 +45,9 @@
         const SLIDE_3B_LINK_TEXT = "";
 
         const VIDEO_SRC4 = "";
+        const VIDEO_SRC4_WEBM = "";
         const VIDEO_SRC4_MOBILE = "";
+        const VIDEO_SRC4_WEBM_MOBILE = "";
         const SLIDE_4_TITLE = "";
         const SLIDE_4_SUBTITLE = "";
         const SLIDE_4A_LINK = "";
@@ -48,7 +56,9 @@
         const SLIDE_4B_LINK_TEXT = "";
 
         const VIDEO_SRC5 = "";
+        const VIDEO_SRC5_WEBM = "";
         const VIDEO_SRC5_MOBILE = "";
+        const VIDEO_SRC5_WEBM_MOBILE = "";
         const SLIDE_5_TITLE = "";
         const SLIDE_5_SUBTITLE = "";
         const SLIDE_5A_LINK = "";
@@ -59,128 +69,126 @@
     </script>
 
     <style type="text/css">
-#svgbody {width:100vw;height:734px;overflow:hidden;}
-@media only screen and (max-width: 768px) {#svgbody {max-height:70vh;}}
-body {overflow:hidden;margin:0;font-family: Roboto,sans-serif}
+        #svgbody {width:100vw;height:734px;overflow:hidden;}
+        @media only screen and (max-width: 768px) {#svgbody {max-height:70vh;}}
+        body {overflow:hidden;margin:0;font-family: Roboto,sans-serif}
 
-/* Title section for each slide*/
-.written{position:absolute; left:0; margin:15px; display:flex;flex-direction:column; background:#00000050; padding:15px; border-radius:30px; max-width:min(500px, 80vw);}
-.slide-title {font-weight: 600;font-size: 2rem;letter-spacing: 0.05em;color: white;margin: 0 0 0.5rem 0;}
-.slide-subtitle {font-weight:100;color:white;font-size: 1rem;}
-.slide-button {width: 8rem;height: 1.75rem;background-color: var(--button-radio-color);border-radius: 9999px;display: flex;margin:1rem auto;}
-.slide-button:hover {background-color: var(--button-hover-color);}
-.button-link-a, .button-link-b {text-decoration:none;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;font-family: 'Roboto Flex', sans-serif;font-size: 10px;color:black;}
+        /* Title section for each slide*/
+        .written{position:absolute; left:0; margin:15px; display:flex;flex-direction:column; background:#00000050; padding:15px; border-radius:30px; max-width:min(500px, 80vw);}
+        .slide-title {font-weight: 600;font-size: 2rem;letter-spacing: 0.05em;color: white;margin: 0 0 0.5rem 0;}
+        .slide-subtitle {font-weight:100;color:white;font-size: 1rem;}
+        .slide-button {width: 8rem;height: 1.75rem;background-color: var(--button-radio-color);border-radius: 9999px;display: flex;margin:1rem auto;}
+        .slide-button:hover {background-color: var(--button-hover-color);}
+        .button-link-a, .button-link-b {text-decoration:none;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;font-family: 'Roboto Flex', sans-serif;font-size: 10px;color:black;}
 
-@media (min-width: 640px) {
-    .slide-button {width: 12rem;height: 2.75rem;}
-    .button-link-a, .button-link-b {font-size: 0.75rem;}
-    .slide-title {font-size: 3rem;}
-    .slide-subtitle {font-size: 1.25rem;}
-}
-@media (max-width: 768px) {
-    .written {margin:0; border-radius:0;width:100%;max-width:100%;padding:50px 0 0 0;justify-content:end;bottom:0;background: linear-gradient(#00000000, #00000050 60px);
-}
-}
-@media (min-width: 1024px) {
-    .slide-button {width: 16rem;height: 3.5rem;}
-    .button-link-a, .button-link-b {font-size: 0.875rem;}
-    .slide-title {font-size: 54px;line-height: 58px;}
-}
+        @media (min-width: 640px) {
+            .slide-button {width: 12rem;height: 2.75rem;}
+            .button-link-a, .button-link-b {font-size: 0.75rem;}
+            .slide-title {font-size: 3rem;}
+            .slide-subtitle {font-size: 1.25rem;}
+        }
+        @media (max-width: 768px) {
+            .written {margin:0; border-radius:0;width:100%;max-width:100%;padding:50px 0 0 0;justify-content:end;bottom:0;background: linear-gradient(#00000000, #00000050 60px);
+        }
+        }
+        @media (min-width: 1024px) {
+            .slide-button {width: 16rem;height: 3.5rem;}
+            .button-link-a, .button-link-b {font-size: 0.875rem;}
+            .slide-title {font-size: 54px;line-height: 58px;}
+        }
 
-.slideshow {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory; /* Enforces snapping on the x-axis */
+        .slideshow {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory; /* Enforces snapping on the x-axis */
 
-  -webkit-overflow-scrolling: touch; /* For smooth scrolling on touch devices */
-  width: 100vw;
-  height: 734px;
-  scrollbar-width: none; /* Hides the scrollbar */
-}
-@media only screen and (max-width: 768px) {.slideshow {max-height:70vh;}}
+        -webkit-overflow-scrolling: touch; /* For smooth scrolling on touch devices */
+        width: 100vw;
+        height: 734px;
+        scrollbar-width: none; /* Hides the scrollbar */
+        }
+        @media only screen and (max-width: 768px) {.slideshow {max-height:70vh;}}
 
-.slide {
-  flex: 0 0 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  font-size: 24px;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-  text-align: center;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-}
-.embedded-video {
-  min-width: 100vw;
-  max-width:100vw;
-  overflow: hidden;
-  height: 100%;
-  object-fit: cover;
-  left:50vw;
-  transform: translateX(-50%);
-  position: absolute;
-}
+        .slide {
+        flex: 0 0 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        font-size: 24px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        }
+        .embedded-video {
+        min-width: 100vw;
+        max-width:100vw;
+        overflow: hidden;
+        height: 100%;
+        object-fit: cover;
+        left:50vw;
+        transform: translateX(-50%);
+        position: absolute;
+        }
 
-/* Background animation */ 
-#bg-logo {position:absolute;z-index:-1;width:80vw;max-width:1000px;top:50%;left:50vw;transform:translate(-50%, -50%);}
-#radialanimation {width:100vw; height:100vw;z-index:-2;
-    background:radial-gradient(#6ddb2c, #00000000 70%); 
-    position:absolute;
-    left:50vw;top:50%;transform: translate(-50%, -50%);
-    animation: 2s infinite alternate pulsepulse;}
-#bg { width:1920px; height:734px; background-color:#000;position:absolute;z-index:-3; }
-@keyframes pulsepulse {
-    from {width:600px;height:500px;opacity:50%;}
-    to {width:900px;height:750px;opacity:100%;}
-}
+        /* Background animation */ 
+        #bg-logo {position:absolute;z-index:-1;width:80vw;max-width:1000px;top:50%;left:50vw;transform:translate(-50%, -50%);}
+        #radialanimation {width:100vw; height:100vw;z-index:-2;
+            background:radial-gradient(#6ddb2c, #00000000 70%); 
+            position:absolute;
+            left:50vw;top:50%;transform: translate(-50%, -50%);
+            animation: 2s infinite alternate pulsepulse;}
+        #bg { width:1920px; height:734px; background-color:#000;position:absolute;z-index:-3; }
+        @keyframes pulsepulse {
+            from {width:600px;height:500px;opacity:50%;}
+            to {width:900px;height:750px;opacity:100%;}
+        }
 
-.radio-toolbar input[type="radio"] {display: none;}
-.radio-toolbar input[type="radio"]:checked + label {background-color: var(--button-radio-color);}
-.radio-toolbar label {display: inline-block;background-color: #ffffffaa;width:30px; height:30px;font-size: 0;border-radius: 10px;cursor: pointer;}
-.radio-toolbar {text-align: center;position: absolute;bottom:30px;left:50vw;transform: translateX(-50%);display: flex;gap: 30px;}
+        .radio-toolbar input[type="radio"] {display: none;}
+        .radio-toolbar input[type="radio"]:checked + label {background-color: var(--button-radio-color);}
+        .radio-toolbar label {display: inline-block;background-color: #ffffffaa;width:30px; height:30px;font-size: 0;border-radius: 10px;cursor: pointer;}
+        .radio-toolbar {text-align: center;position: absolute;bottom:30px;left:50vw;transform: translateX(-50%);display: flex;gap: 30px;}
 
-#debugger {font-family: monospace;color:#0D0;}
-p#debugText {display:flex;flex-direction:column;}
-p#debugText span {}
+        #debugger {font-family: monospace;color:#0D0;}
+        p#debugText {display:flex;flex-direction:column;}
+        p#debugText span {}
 
-@font-face {
-    font-display: swap;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 700;
-    src: url(https://leos.gr/fonts/Roboto-Bold.woff2) format("woff2")
-}
+        @font-face {
+            font-display: swap;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 700;
+            src: url(https://leos.gr/fonts/Roboto-Bold.woff2) format("woff2")
+        }
 
-@font-face {
-    font-display: swap;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://leos.gr/fonts/Roboto-Regular.woff2) format("woff2")
-}
+        @font-face {
+            font-display: swap;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://leos.gr/fonts/Roboto-Regular.woff2) format("woff2")
+        }
 
-@font-face {
-    font-display: swap;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    src: url(https://leos.gr/fonts/Roboto-Light.woff2) format("woff2")
-}
+        @font-face {
+            font-display: swap;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 300;
+            src: url(https://leos.gr/fonts/Roboto-Light.woff2) format("woff2")
+        }
 
-@font-face {
-    font-display: swap;
-    font-family: Roboto Flex;
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://leos.gr/fonts/RobotoFlex-Regular.woff2) format("woff2")
-}
+        @font-face {
+            font-display: swap;
+            font-family: Roboto Flex;
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://leos.gr/fonts/RobotoFlex-Regular.woff2) format("woff2")
+        }
     </style>
-
-
 
     <!-- Embed HTML content within SVG -->
   <foreignObject width="1920" height="100%">
@@ -279,6 +287,7 @@ p#debugText span {}
             <div id="debugger" style="position:absolute;padding:20px;top:50%;left:50vw;transform:translate(-50%,-50%);background-color:black;border:1px solid yellow;border-radius:20px;max-width:300px;display:flex;flex-direction:column;flex-wrap:wrap;display:none;">
                 <p style="color:white;font-weight:bold;">My Debug Console:</p>
                 <p id="debugText">
+                <span id="foobar"></span>
                 <span id="slide-width"></span>
                 <span id="snapToClosestSlide"></span>
                 <span id="changeSlide"></span>
@@ -294,8 +303,17 @@ p#debugText span {}
         rootStyle.setProperty('--button-radio-color', BUTTON_RADIO_COLOR);
         rootStyle.setProperty('--button-hover-color', BUTTON_HOVER_COLOR);
         updateVideoSources();
-        window.addEventListener("resize", updateVideoSources);
-        window.addEventListener("orientationchange", updateVideoSources);
+        window.addEventListener("resize", DesktopMode);
+        window.addEventListener("orientationchange", DesktopMode);
+        var Desktop = true;
+
+        function DesktopMode() {
+            if (window.innerWidth >= 769) {
+                if (!Desktop) {Desktop = true;updateVideoSources();}
+            } else {
+                if (Desktop) {Desktop = false;updateVideoSources();}
+            }
+        }
 
         function updateVideoSources() {
             var screenWidth = window.innerWidth;
@@ -304,44 +322,65 @@ p#debugText span {}
             const videoElement3 = document.getElementById('video3');
             const videoElement4 = document.getElementById('video4');
             const videoElement5 = document.getElementById('video5');
-            // Set the source for video 1
-            if (screenWidth >= 769) {
-                videoElement1.src = VIDEO_SRC1;
-            } else {
-                videoElement1.src = VIDEO_SRC1_MOBILE || VIDEO_SRC1;
-            }
 
-            // Set the source for video 2
+            videoElement2.innerHTML += `<source src="${VIDEO_SRC2_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC2}" type="video/mp4"/>`;
+            videoElement3.innerHTML += `<source src="${VIDEO_SRC3_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC3}" type="video/mp4"/>`;
+            videoElement4.innerHTML += `<source src="${VIDEO_SRC4_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC4}" type="video/mp4"/>`;
+            videoElement5.innerHTML += `<source src="${VIDEO_SRC5_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC5}" type="video/mp4"/>`;
+            
             if (screenWidth >= 769) {
-                videoElement2.src = VIDEO_SRC2;
+                if (SLIDE_COUNT >= 1) {
+                    videoElement1.innerHTML = '';
+                    videoElement1.innerHTML += `<source src="${VIDEO_SRC1_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC1}" type="video/mp4"/>`;
+                    videoElement1.load();
+                }
+                if (SLIDE_COUNT >= 2) {
+                    videoElement2.innerHTML = '';
+                    videoElement2.innerHTML += `<source src="${VIDEO_SRC2_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC2}" type="video/mp4"/>`;
+                    videoElement2.load();
+                }
+                if (SLIDE_COUNT >= 3) {
+                    videoElement3.innerHTML = '';
+                    videoElement3.innerHTML += `<source src="${VIDEO_SRC3_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC3}" type="video/mp4"/>`;
+                    videoElement3.load();
+                }
+                if (SLIDE_COUNT >= 4) {
+                    videoElement4.innerHTML = '';
+                    videoElement4.innerHTML += `<source src="${VIDEO_SRC4_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC4}" type="video/mp4"/>`;
+                    videoElement4.load();
+                }
+                if (SLIDE_COUNT >= 5) {
+                    videoElement5.innerHTML = '';
+                    videoElement5.innerHTML += `<source src="${VIDEO_SRC5_WEBM}" type="video/mp4"/><source src="${VIDEO_SRC5}" type="video/mp4"/>`;
+                    videoElement5.load();
+                }
             } else {
-                videoElement2.src = VIDEO_SRC2_MOBILE || VIDEO_SRC2;
+                if (SLIDE_COUNT >= 1) {
+                    videoElement1.innerHTML = '';
+                    videoElement1.innerHTML += `<source src="${VIDEO_SRC1_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC1_MOBILE}" type="video/mp4"/>`;
+                    videoElement1.load();
+                }
+                if (SLIDE_COUNT >= 2) {
+                    videoElement2.innerHTML = '';
+                    videoElement2.innerHTML += `<source src="${VIDEO_SRC2_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC2_MOBILE}" type="video/mp4"/>`;
+                    videoElement2.load();
+                }
+                if (SLIDE_COUNT >= 3) {
+                    videoElement3.innerHTML = '';
+                    videoElement3.innerHTML += `<source src="${VIDEO_SRC3_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC3_MOBILE}" type="video/mp4"/>`;
+                    videoElement3.load();
+                }
+                if (SLIDE_COUNT >= 4) {
+                    videoElement4.innerHTML = '';
+                    videoElement4.innerHTML += `<source src="${VIDEO_SRC4_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC4_MOBILE}" type="video/mp4"/>`;
+                    videoElement4.load();
+                }
+                if (SLIDE_COUNT >= 5) {
+                    videoElement5.innerHTML = '';
+                    videoElement5.innerHTML += `<source src="${VIDEO_SRC5_WEBM_MOBILE}" type="video/mp4"/><source src="${VIDEO_SRC5_MOBILE}" type="video/mp4"/>`;
+                    videoElement5.load();
+                }
             }
-
-            // Repeat for other videos as necessary
-            if (screenWidth >= 769) {
-                videoElement3.src = VIDEO_SRC3;
-            } else {
-                videoElement3.src = VIDEO_SRC3_MOBILE || VIDEO_SRC3;
-            }
-
-            if (screenWidth >= 769) {
-                videoElement4.src = VIDEO_SRC4;
-            } else {
-                videoElement4.src = VIDEO_SRC4_MOBILE || VIDEO_SRC4;
-            }
-
-            if (screenWidth >= 769) {
-                videoElement5.src = VIDEO_SRC5;
-            } else {
-                videoElement5.src = VIDEO_SRC5_MOBILE || VIDEO_SRC5;
-            }
-
-            videoElement1.setAttribute("type", "video/mp4");
-            videoElement2.setAttribute("type", "video/mp4");
-            videoElement3.setAttribute("type", "video/mp4");
-            videoElement4.setAttribute("type", "video/mp4");
-            videoElement5.setAttribute("type", "video/mp4");
             }
         });
 
